@@ -13,7 +13,7 @@ const Card = () => {
   }, [get]);
 
   return (
-    <div className="w-1/2 my-3 ">
+    <div className="min-w-0 my-3 mx-3">
       {data.map((post, id) => (
         <div key={post?._id} className=" main">
           <div className="card flex flex-col hover:bg-[#f4f5f6] rounded-2xl px-4 py-1">

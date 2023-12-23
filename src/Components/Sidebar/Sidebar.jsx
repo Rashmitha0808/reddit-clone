@@ -65,7 +65,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="flex  h-screen">
+    <div className="flex h-screen ">
       <div className="sidebar-main px-4 flex flex-col justify-self-start min-h-screen w-80 border overflow-y-auto">
         <SidebarIcons icon={<AiFillHome className="w-7 h-7" />} content={"Home"} />
         <SidebarIcons icon={<PiArrowUpRightLight className=" rounded-full border border-black w-6 h-6" />} content={"Popular"} />

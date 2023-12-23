@@ -12,3 +12,4 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+// div fixed will work still need to check with the footer or the hght need to adjust
