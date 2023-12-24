@@ -19,7 +19,7 @@ const PopularCommunities = () => {
   };
   useEffect(() => {
     get("/reddit/channel");
-  }, [get]);
+  }, []);
   return (
     <div className="flex h-screen">
       <div className="popular-main w-[350px] h-[420px] overflow-y-auto mr-10 mt-10 px-3 bg-[#f8f8f8] rounded-lg">

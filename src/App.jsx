@@ -8,11 +8,13 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="search/:query" element={<Search />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="search/:query" element={<Search />} />
+        <Route path="/login" element={<Search />} />
       </Routes>
     </Layout>
   );
 }
 
 export default App;
+// whtve

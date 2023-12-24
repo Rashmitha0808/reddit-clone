@@ -7,11 +7,7 @@ const Home = () => {
   return (
     <div>
       {/* overflow-hidden h-screen */}
-      <div className="flex flex-row justify-between overflow-hidden h-screen">
-        <Sidebar />
-        <Main />
-        <PopularCommunities />
-      </div>
+      <Main />
     </div>
   );
 };

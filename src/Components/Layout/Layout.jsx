@@ -1,12 +1,17 @@
 import React from "react";
 import Nav from "../Navbar/Nav";
-import Footer from "../Foot/Footer";
+import Sidebar from "../Sidebar/Sidebar";
+import PopularCommunities from "../Communities/PopularCommunities";
 
 const Layout = ({ children }) => {
   return (
     <>
       <Nav />
-      <div>{children}</div>
+      <div className="flex flex-row justify-between overflow-hidden mt-16 h-[calc(100vh-4rem)]">
+        <Sidebar />
+        <div className=" overflow-y-auto ">{children}</div>
+        <PopularCommunities />
+      </div>
     </>
   );
 };

@@ -1,7 +1,0 @@
-.main-container::-webkit-scrollbar {
-  width: 0.1rem; /* Adjust the width as needed */
-}
-
-.main-container::-webkit-scrollbar-thumb {
-  background-color: transparent; /* Hide thumb */
-}

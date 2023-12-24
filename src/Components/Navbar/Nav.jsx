@@ -31,7 +31,7 @@ const Nav = () => {
   }, [searchValue]);
 
   return (
-    <div className="flex items-center">
+    <nav className="flex items-center h-16 fixed top-0 left-0 right-0 bg-white">
       <div className="lg:hidden flex items-center ">
         <HiOutlineMenu className="w-7 h-7 ml-4 cursor-pointer" />
       </div>
@@ -75,29 +75,28 @@ const Nav = () => {
           </div>
 
           {/* after login show this */}
-          {/* <div className="header-end-after-login">
-          <BsArrowUpRightCircle />
-          <PiChatCircleDots />
-          <PiBellThin />
-          <PiPlus />
-          <span>Advertise</span>
+          {/* <div className="header-end-after-login flex items-center gap-3">
+            <BsArrowUpRightCircle className="h-7 w-7" />
+            <PiChatCircleDots className="h-8 w-8" />
+            <PiBellThin className="h-8 w-8" />
+            <PiPlus className="h-8 w-8" />
+            <span>Advertise</span>
 
-          <div className="user-icon">
-            <img src="/Assets/reddit-logo.png" className="w-10" />
+            <div className="user-icon flex items-center">
 
-            <img src="/Assets/profile-img.jpg" className="w-20" />
-            <div className="user-details">
-              <span>Glitter head</span>
-              <span>
-                <GiFlowerEmblem className="text-orange-700" /> 1 Karma
-              </span>
+              <img src="/Assets/profile-img.jpg" className="w-20" />
+              <div className="user-details flex items-center flex-col">
+                <span>Glitter head</span>
+                <span className="flex items-center ">
+                  <GiFlowerEmblem className="text-orange-700" /> 1 Karma
+                </span>
+              </div>
+              <MdKeyboardArrowDown />
             </div>
-            <MdKeyboardArrowDown />
-          </div>
-        </div> */}
+          </div> */}
         </nav>
       </div>
-    </div>
+    </nav>
   );
 };
 
