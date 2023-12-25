@@ -83,7 +83,6 @@ const Nav = () => {
             <span>Advertise</span>
 
             <div className="user-icon flex items-center">
-
               <img src="/Assets/profile-img.jpg" className="w-20" />
               <div className="user-details flex items-center flex-col">
                 <span>Glitter head</span>
