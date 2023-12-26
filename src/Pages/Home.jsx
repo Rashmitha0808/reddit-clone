@@ -4,12 +4,14 @@ import PopularCommunities from "../Components/Communities/PopularCommunities";
 import Card from "../Components/Main/Card";
 import Main from "../Components/Main/Main";
 import LoginPage from "../Components/LogInSignUp/LoginPage";
+import SignUp from "../Components/LogInSignUp/SignUp";
 const Home = () => {
   return (
     <div>
       {/* overflow-hidden h-screen */}
       {/* <Main /> */}
-      <LoginPage />
+      {/* <LoginPage /> */}
+      <SignUp />
     </div>
   );
 };
