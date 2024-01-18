@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-const Accordion = ({ items }) => {
+const Accordion = ({ items, handleAlert }) => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleAccordion = (index) => {
@@ -18,7 +18,7 @@ const Accordion = ({ items }) => {
             <span>{openIndex === index ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
           </div>
           {openIndex === index && (
-            <div className="p-4 ">
+            <div className="p-4 " onClick={handleAlert}>
               {item.icon && <div className="mr-2">{item.icon}</div>}
               <p>{item.content}</p>
             </div>

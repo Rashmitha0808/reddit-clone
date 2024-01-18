@@ -13,8 +13,16 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { RxDotsHorizontal } from "react-icons/rx";
 import { HiOutlineMenu } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Nav = () => {
+  const { authenticated } = useSelector((state) => state.user);
+  useEffect(() => {
+    if (!authenticated) {
+      navigate("/login");
+    }
+  }, [authenticated]);
+
   const navigate = useNavigate();
   const [searchValue, SetsearchValue] = useState("");
   const handleSearch = (e) => {
@@ -39,9 +47,15 @@ const Nav = () => {
         <nav className="flex justify-between w-full  h-[40px] items-center">
           <div className="header-start flex items-center cursor-pointer">
             <Link to="/">
-              <img src="/Assets/reddit-logo.png" className="w-9 h-9 mr-2 object-contain" />
+              <img
+                src="/Assets/reddit-logo.png"
+                className="w-9 h-9 mr-2 object-contain"
+              />
             </Link>
-            <img src="/Assets/reddit-word.png" className="w-50 h-8 object-contain" />
+            <img
+              src="/Assets/reddit-word.png"
+              className="w-50 h-8 object-contain"
+            />
             {/* <HiMiniHome />
           <span>Home</span>
           <MdKeyboardArrowDown /> */}
@@ -53,7 +67,12 @@ const Nav = () => {
             </div>
 
             <form className="text-neutral-content-strong w-full">
-              <input type="search" onChange={handleSearch} placeholder="Search Reddit" className="bg-inherit border-none focus:outline-none  w-full" />
+              <input
+                type="search"
+                onChange={handleSearch}
+                placeholder="Search Reddit"
+                className="bg-inherit border-none focus:outline-none  w-full"
+              />
             </form>
 
             {/* <div className=" close-search pr-3">
@@ -67,7 +86,12 @@ const Nav = () => {
               <button className="font-medium		">Get app</button>
             </div>
             <div className="flex items-center px-3  h-full  mr-2  text-white font-roboto rounded-full bg-[#d93a00]   hover:bg-[#962900]">
-              <button className="font-medium		">Log In</button>
+              <button
+                className="font-medium"
+                onClick={() => console.log("hey i am logging in")}
+              >
+                Log In
+              </button>
             </div>
             <div className="flex items-center h-full px-3 rounded-full cursor-pointer  hover:bg-[#e6eaed]">
               <RxDotsHorizontal className="w-5 h-5" />

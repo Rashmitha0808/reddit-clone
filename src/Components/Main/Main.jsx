@@ -7,7 +7,7 @@ const Main = () => {
   useEffect(() => {
     get("/reddit/post?limit=20&page=2");
   }, []);
-  console.log(data);
+  // console.log(data);
   return (
     <div className="min-w-0 my-3 mx-3">
       {data?.map((post) => (

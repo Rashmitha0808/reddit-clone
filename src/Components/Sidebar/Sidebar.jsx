@@ -14,14 +14,16 @@ import { MdOutlinePolicy, MdContentPaste } from "react-icons/md";
 const Sidebar = () => {
   const initialIconToShow = 6;
   const [iconToShow, setIconToShow] = useState(initialIconToShow);
+  const [showAlert, setshowAlert] = useState(false);
+
   const handleShowMore = () => {
     setIconToShow(accordionItems[2].content.length);
   };
   const handleShowLess = () => {
     setIconToShow(initialIconToShow);
   };
-  const handleContentClick = () => {
-    alert("Coming soon!");
+  const handleAlert = () => {
+    setshowAlert(true);
   };
   const accordionItems = [
     {
@@ -63,13 +65,15 @@ const Sidebar = () => {
       ],
     },
   ];
-
+  console.log(showAlert);
   return (
     <div className="flex h-[calc(100vh-4rem)]">
       <div className="sidebar-main px-4 flex flex-col justify-self-start  w-80 border overflow-y-auto">
         <SidebarIcons icon={<AiFillHome className="w-7 h-7" />} content={"Home"} />
         <SidebarIcons icon={<PiArrowUpRightLight className=" rounded-full border border-black w-6 h-6" />} content={"Popular"} />
-        <Accordion items={accordionItems} />
+        {showAlert && <ComingSoon />}
+        {/* here thsi is the culprit , once it will show this alert and it wont because of mounting*/}
+        <Accordion items={accordionItems} handleAlert={handleAlert} />
         <div className="visible py-md grow flex flex-col justify-end">
           <Footer />
         </div>
@@ -77,5 +81,4 @@ const Sidebar = () => {
     </div>
   );
 };
-
-export default Sidebar;
+export default React.memo(Sidebar);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav from "../Navbar/Nav";
 import Sidebar from "../Sidebar/Sidebar";
 import PopularCommunities from "../Communities/PopularCommunities";

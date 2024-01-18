@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const ComingSoon = () => {
-  return (
-    <div>
-      <h1>Coming sooon....</h1>
-    </div>
-  );
+  // useEffect(() => {
+  //   {
+  //     alert("Hello this will be coming soon!!");
+  //   }
+
+  // }, []);
+
+  console.log("clicked");
+
+  return <div className="w-0 h-0">{alert("Hello this will be coming soon!!")}</div>;
 };
 
 export default ComingSoon;
