@@ -17,10 +17,21 @@ function useAPI(initialData = []) {
       setIsLoading(false);
     }
   };
-  // Function to handle login requests
-  const login = async (userData) => {
+  const post = async (query, requestData) => {
     try {
-      const response = await api.post("/user/login");
+      const response = await api.post(query, requestData);
+      setData(response?.data);
+      setIsError(false);
+    } catch (error) {
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const patch = async (query, requestData) => {
+    try {
+      const response = await api.patch(query, requestData);
       setData(response?.data?.data);
       setIsError(false);
     } catch (error) {
@@ -30,19 +41,6 @@ function useAPI(initialData = []) {
     }
   };
 
-  // Function to handle signup requests
-  const signup = async (userData) => {
-    try {
-      const response = await api.post("/user/signup");
-      setData(response?.data?.data);
-      setIsError(false);
-    } catch (error) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return { data, isLoading, isError, get, login, signup };
+  return { data, isLoading, isError, get, post, patch };
 }
 export default useAPI;

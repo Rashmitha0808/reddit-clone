@@ -1,6 +1,7 @@
-import React, { Children, useEffect } from "react";
+import React, { useEffect } from "react";
+import { createPortal } from "react-dom";
 
-const Portal = ({ onClose, children, className }) => {
+export default function Portal({ onClose, children, className = "" }) {
   const handleClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -14,18 +15,13 @@ const Portal = ({ onClose, children, className }) => {
     };
   }, []);
 
-  return (
-    (
-      <div
-        onClick={handleClick}
-        className={`fixed inset-0 z-50 bg-red-500 backdrop-blur-sm
-        flex items-center justify-center ${className}`}
-      >
-        {children}
-      </div>
-    ),
+  return createPortal(
+    <div
+      onClick={handleClick}
+      className={`fixed inset-0 z-50 bg-[#000a] backdrop-blur-sm flex items-center justify-center ${className}`}
+    >
+      {children}
+    </div>,
     document.body
   );
-};
-
-export default Portal;
+}

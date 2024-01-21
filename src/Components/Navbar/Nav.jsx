@@ -3,7 +3,7 @@ import { BsArrowUpRightCircle } from "react-icons/bs";
 import { PiChatCircleDots, PiBellThin, PiPlus } from "react-icons/pi";
 import { TfiSearch } from "react-icons/tfi";
 import { HiMiniHome } from "react-icons/hi2";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { GiFlowerEmblem } from "react-icons/gi";
 import { BsQrCodeScan } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
@@ -14,20 +14,38 @@ import { RxDotsHorizontal } from "react-icons/rx";
 import { HiOutlineMenu } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import DropDown from "./DropDown";
+import LoginPage from "../LogInSignUp/LoginPage";
+import Portal from "../Modals/Portal";
+import Authentication from "../LogInSignUp/Authentication";
 
 const Nav = () => {
   const { authenticated } = useSelector((state) => state.user);
-  useEffect(() => {
-    if (!authenticated) {
-      navigate("/login");
-    }
-  }, [authenticated]);
-
+  // useEffect(() => {
+  //   if (!authenticated) {
+  //     navigate("/login");
+  //   }
+  // }, [authenticated]);
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
   const [searchValue, SetsearchValue] = useState("");
+  const [openDropdown, setOpenDropdown] = useState(false);
+
+  const handleDropdown = () => {
+    setOpenDropdown(!openDropdown);
+  };
+  const onModalOpen = (e) => {
+    if (e.stopProgation) e.stopProgation();
+    setShowModal(true);
+  };
+  const onModalClose = (e) => {
+    console.log("debug");
+    setShowModal(false);
+  };
   const handleSearch = (e) => {
     SetsearchValue(e.target.value);
   };
+
   useEffect(() => {
     const timerId = setTimeout(() => {
       if (searchValue.length < 3) return;
@@ -86,10 +104,7 @@ const Nav = () => {
               <button className="font-medium		">Get app</button>
             </div>
             <div className="flex items-center px-3  h-full  mr-2  text-white font-roboto rounded-full bg-[#d93a00]   hover:bg-[#962900]">
-              <button
-                className="font-medium"
-                onClick={() => console.log("hey i am logging in")}
-              >
+              <button className="font-medium" onClick={onModalOpen}>
                 Log In
               </button>
             </div>
@@ -97,24 +112,38 @@ const Nav = () => {
               <RxDotsHorizontal className="w-5 h-5" />
             </div>
           </div>
-
+          {showModal && (
+            <Portal onClose={onModalClose}>
+              <Authentication onClose={onModalClose} />
+            </Portal>
+          )}
           {/* after login show this */}
           {/* <div className="header-end-after-login flex items-center gap-3">
-            <BsArrowUpRightCircle className="h-7 w-7" />
-            <PiChatCircleDots className="h-8 w-8" />
-            <PiBellThin className="h-8 w-8" />
-            <PiPlus className="h-8 w-8" />
+            <BsArrowUpRightCircle className="cursor-pointer h-6 w-6" />
+            <PiChatCircleDots className="cursor-pointer h-7 w-7" />
+            <PiBellThin className="cursor-pointer h-7 w-7" />
+            <PiPlus className="cursor-pointer h-7 w-7" />
             <span>Advertise</span>
 
-            <div className="user-icon flex items-center">
-              <img src="/Assets/profile-img.jpg" className="w-20" />
-              <div className="user-details flex items-center flex-col">
-                <span>Glitter head</span>
-                <span className="flex items-center ">
-                  <GiFlowerEmblem className="text-orange-700" /> 1 Karma
-                </span>
+            <div className="flex flex-col h-full">
+              <div className="flex items-center mx-2 border p-1">
+                <img src="/Assets/profile-img.jpg" className="w-10" />
+                <div className="user-details flex items-center flex-col px-3">
+                  <span className="text-sm ">Glitter head</span>
+                  <div className="flex items-center text-sm">
+                    <GiFlowerEmblem className="text-orange-700" />
+                    <span className="text-sm font-bold text-gray-400">
+                      1 Karma
+                    </span>
+                  </div>
+                </div>
+                {openDropdown ? (
+                  <MdKeyboardArrowUp onClick={handleDropdown} />
+                ) : (
+                  <MdKeyboardArrowDown onClick={handleDropdown} />
+                )}
               </div>
-              <MdKeyboardArrowDown />
+              <div className="flex">{openDropdown && <DropDown />}</div>
             </div>
           </div> */}
         </nav>

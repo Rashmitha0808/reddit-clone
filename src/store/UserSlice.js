@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from '../API/axios'
-import useAPI from "../Hooks/useAPI";
+import requests from "../API/Request";
 
 export const signUpUser = createAsyncThunk(
     "user/signUpUser",
     async(userData) =>{
         try{
-            const response = await api.post(useAPI.signup,{...userData});
+            const response = await api.post(requests.signup,{...userData});
             return response.data;
         }catch(error){
             return Promise.reject(error.response.data);
@@ -17,7 +17,7 @@ export const logInUser = createAsyncThunk(
     "user/logInUser",
     async(userData)=>{
         try{
-            const response = await api.post(useAPI.signup,{...userData});
+            const response = await api.post(requests.signup,{...userData});
             return response.data;
         }catch(error){
             return Promise.reject(error.response.data);
@@ -31,6 +31,7 @@ const initialState = {
     user: null,
     error: null,
 };
+
 export const userSlice = createSlice({
     name: "user",
     initialState,
@@ -58,7 +59,7 @@ export const userSlice = createSlice({
         })
         .addCase(signUpUser.fulfilled, (state,{payload})=>{
             state.authenticated = true;
-            // console.log("fulfilled", payload);
+            console.log("fulfilled", payload);
             const {token, data}= payload;
             state.user = data.user;
             localStorage.setItem("reddit_token", token);

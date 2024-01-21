@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logInUser } from "../../store/UserSlice";
 
-const LoginPage = ({ togglePage, userEmail, handleEmailChange }) => {
+const LoginPage = ({ onClose, setIsLoginPage }) => {
   const { authenticated, error: authError } = useSelector(
     (state) => state.user
   );
@@ -17,8 +17,9 @@ const LoginPage = ({ togglePage, userEmail, handleEmailChange }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    appType: "ott",
+    appType: "reddit",
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -31,9 +32,9 @@ const LoginPage = ({ togglePage, userEmail, handleEmailChange }) => {
     return emailRegex.test(email);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("hey im clidkjfsjd");
     const { email, password } = formData;
 
     if (!email || !password) {
@@ -51,9 +52,12 @@ const LoginPage = ({ togglePage, userEmail, handleEmailChange }) => {
   }
 
   return (
-    <div className="flex flex-col justify-center w-9/12 border mx-auto py-5">
-      <div className="flex justify-end px-10 ">
-        <div className="rounded-full border bg-[#eaedef] p-2 cursor-pointer">
+    <div className="bg-white shadow max-w-xl flex flex-col justify-center w-9/12 border mx-auto py-5">
+      <div className="flex justify-end px-4">
+        <div
+          onClick={onClose}
+          className="rounded-full border bg-[#eaedef] p-2 cursor-pointer"
+        >
           <RxCross1 className="h-5 w-5 text-[#292828]" />
         </div>
       </div>
@@ -90,7 +94,7 @@ const LoginPage = ({ togglePage, userEmail, handleEmailChange }) => {
               value={formData.email}
               name="email"
               type="email"
-              placeholder="Username *"
+              placeholder="Email *"
               onChange={handleChange}
             />
             <input
@@ -119,7 +123,13 @@ const LoginPage = ({ togglePage, userEmail, handleEmailChange }) => {
               </p>
               <p>
                 New to Reddit?
-                <span className="text-[#4444d9] cursor-pointer"> Sign up</span>
+                <span
+                  className="text-[#4444d9] cursor-pointer"
+                  onClick={() => setIsLoginPage(false)}
+                >
+                  {" "}
+                  Sign up
+                </span>
               </p>
             </div>
 

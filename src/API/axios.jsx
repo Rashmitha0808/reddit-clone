@@ -3,4 +3,12 @@ const api = axios.create({
   baseURL: "https://academics.newtonschool.co/api/v1",
   headers: { projectId: "qlapp18uwhqp" },
 });
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("reddit_token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 export default api;

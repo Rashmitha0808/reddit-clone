@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const SignUp = ({ togglePage, userEmail, handleEmailChange }) => {
+const SignUp = ({ onClose, setIsLoginPage }) => {
   const { authenticated } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const SignUp = ({ togglePage, userEmail, handleEmailChange }) => {
     name: "",
     email: "",
     password: "",
-    appType: "ott",
+    appType: "reddit",
   });
 
   const isValidEmail = (email) => {
@@ -24,16 +24,15 @@ const SignUp = ({ togglePage, userEmail, handleEmailChange }) => {
   };
 
   const handleSubmit = (e) => {
+    console.log(formData);
     e.preventDefault();
-
-    const { email, password } = formData;
-
-    if (!email || !password) {
+    if (!formData.email || !formData.password) {
       setError("All fields must be filled");
-    } else if (!isValidEmail(email)) {
+    } else if (!formData.email.includes("@")) {
       setError("Enter valid email");
     } else {
       setError("");
+      console.log("hefisjf");
       dispatch(logInUser(formData));
     }
   };
@@ -85,19 +84,25 @@ const SignUp = ({ togglePage, userEmail, handleEmailChange }) => {
 
           <form onSubmit={handleSubmit} className="flex flex-col">
             <input
+              value={formData.email}
+              name="email"
+              onChange={handleChange}
               type="email"
               className="bg-[#eaedef] outline-none h-14 rounded-3xl px-4 mb-4 text-lg"
               placeholder="Email *"
-              onChange={handleChange}
             />
             <input
+              value={formData.name}
+              name="name"
+              onChange={handleChange}
               type="text"
               className="bg-[#eaedef] h-14 rounded-3xl px-4 mb-4"
               placeholder="Username *"
-              onChange={handleChange}
             />
             <input
               type="password"
+              name="password"
+              value={formData.password}
               className="bg-[#eaedef] h-14 rounded-3xl px-4"
               placeholder="Password *"
               onChange={handleChange}
@@ -106,20 +111,21 @@ const SignUp = ({ togglePage, userEmail, handleEmailChange }) => {
             <div className="flex flex-col gap-3 my-5">
               <p>
                 Already a redditor?
-                <button
-                  type="submit"
+                <div
                   className="text-[#4444d9] cursor-pointer"
-                  onClick={togglePage}
+                  onClick={() => setIsLoginPage(true)}
                 >
-                  {" "}
                   Log In
-                </button>
+                </div>
               </p>
             </div>
 
-            <div className="bg-red-500 text-white h-14 rounded-full cursor-pointer flex items-center justify-center">
+            <button
+              type="submit"
+              className="bg-red-500 text-white h-14 rounded-full cursor-pointer flex items-center justify-center"
+            >
               Continue
-            </div>
+            </button>
           </form>
         </div>
       </div>
