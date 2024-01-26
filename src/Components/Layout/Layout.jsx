@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Nav from "../Navbar/Nav";
 import Sidebar from "../Sidebar/Sidebar";
 import PopularCommunities from "../Communities/PopularCommunities";
+import { useLocation } from "react-router-dom";
 
 const Layout = ({ children }) => {
   return (

@@ -34,7 +34,6 @@ const LoginPage = ({ onClose, setIsLoginPage }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hey im clidkjfsjd");
     const { email, password } = formData;
 
     if (!email || !password) {
@@ -52,7 +51,7 @@ const LoginPage = ({ onClose, setIsLoginPage }) => {
   }
 
   return (
-    <div className="bg-white shadow max-w-xl flex flex-col justify-center w-9/12 border mx-auto py-5">
+    <div className="bg-white shadow max-w-xl flex flex-col justify-center border mx-auto py-5 rounded-3xl">
       <div className="flex justify-end px-4">
         <div
           onClick={onClose}

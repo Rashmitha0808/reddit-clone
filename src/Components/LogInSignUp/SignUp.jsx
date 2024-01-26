@@ -4,9 +4,11 @@ import { FaApple } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { signUpUser } from "../../store/UserSlice";
 
 const SignUp = ({ onClose, setIsLoginPage }) => {
   const { authenticated } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -28,12 +30,11 @@ const SignUp = ({ onClose, setIsLoginPage }) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
       setError("All fields must be filled");
-    } else if (!formData.email.includes("@")) {
+    } else if (!isValidEmail) {
       setError("Enter valid email");
     } else {
       setError("");
-      console.log("hefisjf");
-      dispatch(logInUser(formData));
+      dispatch(signUpUser(formData));
     }
   };
 
@@ -49,10 +50,10 @@ const SignUp = ({ onClose, setIsLoginPage }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center w-9/12 border mx-auto py-5 rounded-3xl">
+    <div className="bg-white shadow max-w-xl flex flex-col justify-center border mx-auto py-5 rounded-3xl">
       <div className="flex justify-end px-10 ">
         <div className="rounded-full border bg-[#eaedef] p-2 cursor-pointer">
-          <RxCross1 className="h-5 w-5 text-[#292828]" />
+          <RxCross1 onClick={onClose} className="h-5 w-5 text-[#292828]" />
         </div>
       </div>
 
@@ -119,7 +120,7 @@ const SignUp = ({ onClose, setIsLoginPage }) => {
                 </div>
               </p>
             </div>
-
+            <div>{error && <p className="error h-4">{error}</p>}</div>
             <button
               type="submit"
               className="bg-red-500 text-white h-14 rounded-full cursor-pointer flex items-center justify-center"

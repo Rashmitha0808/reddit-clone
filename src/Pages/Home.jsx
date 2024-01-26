@@ -49,6 +49,7 @@ const Home = () => {
   return (
     <div>
       <Main />
+      {/* <Post /> */}
     </div>
   );
 };

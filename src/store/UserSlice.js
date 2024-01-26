@@ -17,7 +17,7 @@ export const logInUser = createAsyncThunk(
     "user/logInUser",
     async(userData)=>{
         try{
-            const response = await api.post(requests.signup,{...userData});
+            const response = await api.post(requests.login,{...userData});
             return response.data;
         }catch(error){
             return Promise.reject(error.response.data);
@@ -42,7 +42,7 @@ export const userSlice = createSlice({
             if(token){
                 const user = localStorage.getItem("reddit_user");
                 state.authenticated = true;
-                state.token = true;
+                state.token = token;
                 state.user = user;
             }
         },
