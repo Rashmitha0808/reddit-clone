@@ -1,17 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "../Navbar/Nav";
 import Sidebar from "../Sidebar/Sidebar";
 import PopularCommunities from "../Communities/PopularCommunities";
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Layout = ({ children }) => {
+  const { authenticated } = useSelector((state) => state.user);
+
   return (
     <>
       <Nav />
-      <div className="flex flex-row justify-between overflow-hidden mt-16 h-[calc(100vh-4rem)]">
-        <Sidebar />
-        <div className=" overflow-y-auto ">{children}</div>
-        <PopularCommunities />
+      <div
+        className={`flex flex-row justify-between overflow-hidden mt-16 h-[calc(100vh-4rem)] ${
+          authenticated ? "bg-[#DAE0E6]" : "bg-white"
+        }`}
+      >
+        {!authenticated && <Sidebar />}
+        <div className=" overflow-y-auto max-w-3xl m-auto h-full  ">
+          {children}
+        </div>
+        {!authenticated && <PopularCommunities />}
       </div>
     </>
   );

@@ -41,6 +41,18 @@ function useAPI(initialData = []) {
     }
   };
 
-  return { data, isLoading, isError, get, post, patch };
+  const Delete = async (query) => {
+    try {
+      const response = await api.delete(query);
+      // setData(response?.data?.data);
+      setIsError(false);
+    } catch (error) {
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return { data, isLoading, isError, get, post, patch, Delete };
 }
 export default useAPI;

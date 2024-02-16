@@ -21,11 +21,7 @@ import Authentication from "../LogInSignUp/Authentication";
 
 const Nav = () => {
   const { authenticated } = useSelector((state) => state.user);
-  // useEffect(() => {
-  //   if (!authenticated) {
-  //     navigate("/login");
-  //   }
-  // }, [authenticated]);
+
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [searchValue, SetsearchValue] = useState("");
@@ -44,6 +40,9 @@ const Nav = () => {
   };
   const handleSearch = (e) => {
     SetsearchValue(e.target.value);
+  };
+  const handleUserLogin = () => {
+    localStorage.getItem("");
   };
 
   useEffect(() => {
@@ -74,16 +73,15 @@ const Nav = () => {
               src="/Assets/reddit-word.png"
               className="w-50 h-8 object-contain"
             />
+
             {/* <HiMiniHome />
           <span>Home</span>
           <MdKeyboardArrowDown /> */}
           </div>
-
           <div className=" search-bar flex items-center content-center  rounded-full bg-[#eeeeee] px-4 h-[45px] w-[41.5rem]  border-[#edeff1] hover:bg-[#e6eaed]">
             <div className="search-icon  pr-2 text-[#0f1a1c]">
               <CiSearch className="w-5 h-5 text-black" />
             </div>
-
             <form className="text-neutral-content-strong w-full">
               <input
                 type="search"
@@ -92,60 +90,61 @@ const Nav = () => {
                 className="bg-inherit border-none focus:outline-none  w-full"
               />
             </form>
-
             {/* <div className=" close-search pr-3">
-            <IoIosCloseCircleOutline className=" w-5 h-5" />
-          </div> */}
+              <IoIosCloseCircleOutline className=" w-5 h-5" />
+            </div> */}
           </div>
 
-          <div className=" header-end flex items-center h-[45px] ">
-            <div className="flex items-center px-3 rounded-full h-full mr-2   bg-[#eeeeee] border-[#edeff1] hover:bg-[#e6eaed]">
-              <BsQrCodeScan className="mr-2 w-5 h-5" />
-              <button className="font-medium		">Get app</button>
+          {!authenticated ? (
+            <div className=" header-end flex items-center h-[45px] ">
+              <div className="flex items-center px-3 rounded-full h-full mr-2   bg-[#eeeeee] border-[#edeff1] hover:bg-[#e6eaed]">
+                <BsQrCodeScan className="mr-2 w-5 h-5" />
+                <button className="font-medium		">Get app</button>
+              </div>
+              <div className="flex items-center px-3  h-full  mr-2  text-white font-roboto rounded-full bg-[#d93a00]   hover:bg-[#962900]">
+                <button className="font-medium" onClick={onModalOpen}>
+                  Log In
+                </button>
+              </div>
+              <div className="flex items-center h-full px-3 rounded-full cursor-pointer  hover:bg-[#e6eaed]">
+                <RxDotsHorizontal className="w-5 h-5" />
+              </div>
             </div>
-            <div className="flex items-center px-3  h-full  mr-2  text-white font-roboto rounded-full bg-[#d93a00]   hover:bg-[#962900]">
-              <button className="font-medium" onClick={onModalOpen}>
-                Log In
-              </button>
+          ) : (
+            <div className="header-end-after-login flex items-center gap-3">
+              <BsArrowUpRightCircle className="cursor-pointer h-6 w-6" />
+              <PiChatCircleDots className="cursor-pointer h-7 w-7" />
+              <PiBellThin className="cursor-pointer h-7 w-7" />
+              <PiPlus className="cursor-pointer h-7 w-7" />
+              <span>Advertise</span>
+
+              <div className="flex flex-col h-full">
+                <div className="flex items-center mx-2 border p-1">
+                  <img src="/Assets/profile-img.jpg" className="w-10" />
+                  <div className="user-details flex items-center flex-col px-3">
+                    <span className="text-sm ">Glitter head</span>
+                    <div className="flex items-center text-sm">
+                      <GiFlowerEmblem className="text-orange-700" />
+                      <span className="text-sm font-bold text-gray-400">
+                        1 Karma
+                      </span>
+                    </div>
+                  </div>
+                  {openDropdown ? (
+                    <MdKeyboardArrowUp onClick={handleDropdown} />
+                  ) : (
+                    <MdKeyboardArrowDown onClick={handleDropdown} />
+                  )}
+                </div>
+                <div className="flex">{openDropdown && <DropDown />}</div>
+              </div>
             </div>
-            <div className="flex items-center h-full px-3 rounded-full cursor-pointer  hover:bg-[#e6eaed]">
-              <RxDotsHorizontal className="w-5 h-5" />
-            </div>
-          </div>
+          )}
           {showModal && (
             <Portal onClose={onModalClose}>
               <Authentication onClose={onModalClose} />
             </Portal>
           )}
-          {/* after login show this */}
-          {/* <div className="header-end-after-login flex items-center gap-3">
-            <BsArrowUpRightCircle className="cursor-pointer h-6 w-6" />
-            <PiChatCircleDots className="cursor-pointer h-7 w-7" />
-            <PiBellThin className="cursor-pointer h-7 w-7" />
-            <PiPlus className="cursor-pointer h-7 w-7" />
-            <span>Advertise</span>
-
-            <div className="flex flex-col h-full">
-              <div className="flex items-center mx-2 border p-1">
-                <img src="/Assets/profile-img.jpg" className="w-10" />
-                <div className="user-details flex items-center flex-col px-3">
-                  <span className="text-sm ">Glitter head</span>
-                  <div className="flex items-center text-sm">
-                    <GiFlowerEmblem className="text-orange-700" />
-                    <span className="text-sm font-bold text-gray-400">
-                      1 Karma
-                    </span>
-                  </div>
-                </div>
-                {openDropdown ? (
-                  <MdKeyboardArrowUp onClick={handleDropdown} />
-                ) : (
-                  <MdKeyboardArrowDown onClick={handleDropdown} />
-                )}
-              </div>
-              <div className="flex">{openDropdown && <DropDown />}</div>
-            </div>
-          </div> */}
         </nav>
       </div>
     </nav>

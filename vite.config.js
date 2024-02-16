@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/reddit-clone/",
   plugins: [react()],
   css: {
     preprocessorOptions: {

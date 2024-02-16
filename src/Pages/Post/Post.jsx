@@ -9,7 +9,8 @@ import { HiOutlineInformationCircle } from "react-icons/hi2";
 import { BiPoll } from "react-icons/bi";
 import Icons from "./Icons";
 import { useDispatch } from "react-redux";
-import { createPost } from "../../store/PostSlice";
+import useAPI from "../../Hooks/useAPI";
+import { useNavigate } from "react-router-dom";
 const iconData = [
   { title: "Post", icon: <LuNewspaper /> },
   { title: "Image & Video", icon: <LuImage /> },
@@ -25,11 +26,14 @@ const iconFooter = [
 ];
 const Post = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [postText, setPostText] = useState("");
+  const [postTitle, setPostTitle] = useState("");
+  const [postImages, setPostImages] = useState("");
   const [openDropdown, setOpenDropdown] = useState(false);
   const [colorIcon, setColorIcon] = useState("");
-
+  const { post } = useAPI();
   const handleColorChange = (index, color) => {
     setColorIcon(color);
     console.log("hey im color");
@@ -37,14 +41,18 @@ const Post = () => {
   const handleDropdown = () => {
     setOpenDropdown(!openDropdown);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createPost({ text: postText }));
-
-    setPostText("");
+    const formData = new FormData();
+    formData.append("title", postTitle);
+    formData.append("content", postText);
+    // formData.append("images", postImages);
+    await post("/reddit/post/", formData);
+    navigate("/");
   };
+
   return (
-    <form className="ml-40 mt-5" onSubmit={handleSubmit}>
+    <form className=" mt-5" onSubmit={handleSubmit}>
       <div className="flex flex-col w-[740px] ">
         <div className="flex flex-row  items-center my-2 justify-between border-b-2 ">
           <h1 className="text-lg font-medium"> Create a post</h1>
@@ -96,6 +104,8 @@ const Post = () => {
 
           <div className="m-4">
             <input
+              value={postTitle}
+              onChange={(e) => setPostTitle(e.target.value)}
               className="w-full border py-2 px-3 rounded-md text-gray-700"
               placeholder="Title "
             />

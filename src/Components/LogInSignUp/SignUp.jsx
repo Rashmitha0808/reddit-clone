@@ -11,8 +11,8 @@ const SignUp = ({ onClose, setIsLoginPage }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [error, setError] = useState("");
 
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,13 +28,14 @@ const SignUp = ({ onClose, setIsLoginPage }) => {
   const handleSubmit = (e) => {
     console.log(formData);
     e.preventDefault();
-    if (!formData.email || !formData.password) {
+    if (!formData.email || !formData.password || !formData.name) {
       setError("All fields must be filled");
     } else if (!isValidEmail) {
       setError("Enter valid email");
     } else {
       setError("");
       dispatch(signUpUser(formData));
+      onClose();
     }
   };
 
@@ -108,19 +109,25 @@ const SignUp = ({ onClose, setIsLoginPage }) => {
               placeholder="Password *"
               onChange={handleChange}
             />
+            <div>
+              {error && (
+                <p className="h-3 text-sm text-red-600">
+                  {error.toLowerCase()}
+                </p>
+              )}
+            </div>
 
             <div className="flex flex-col gap-3 my-5">
-              <p>
+              <div>
                 Already a redditor?
-                <div
-                  className="text-[#4444d9] cursor-pointer"
+                <span
+                  className="text-[#4444d9] cursor-pointer mx-2"
                   onClick={() => setIsLoginPage(true)}
                 >
                   Log In
-                </div>
-              </p>
+                </span>
+              </div>
             </div>
-            <div>{error && <p className="error h-4">{error}</p>}</div>
             <button
               type="submit"
               className="bg-red-500 text-white h-14 rounded-full cursor-pointer flex items-center justify-center"

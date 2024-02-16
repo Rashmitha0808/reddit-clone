@@ -5,21 +5,21 @@ import { RxCross1 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logInUser } from "../../store/UserSlice";
+import useAPI from "../../Hooks/useAPI";
 
-const LoginPage = ({ onClose, setIsLoginPage }) => {
+const LoginPage = ({ onClose, userEmail, setIsLoginPage }) => {
   const { authenticated, error: authError } = useSelector(
     (state) => state.user
   );
-  const dispatch = useDispatch();
+  const { patch } = useAPI();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [error, setError] = useState("");
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     appType: "reddit",
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -31,25 +31,39 @@ const LoginPage = ({ onClose, setIsLoginPage }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
+  const handleChangePassword = async (e) => {
+    try {
+      await patch("/user/updateMyPassword", {
+        email: formData.email,
+        passwordCurrent: formData.password,
+        password: "",
+        appType: "reddit",
+      });
+      console.log("password changed succesfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
+    console.log("login submit");
     e.preventDefault();
     const { email, password } = formData;
-
     if (!email || !password) {
-      setError("All fields must be filled");
+      console.log("login submit 1");
+      setError("all fields must be filled");
     } else if (!isValidEmail(email)) {
+      console.log("login submit 2");
       setError("Enter valid email");
     } else {
+      console.log("login submit 3");
       setError("");
       dispatch(logInUser(formData));
     }
   };
-
   if (authenticated) {
-    navigate("/");
+    onClose();
   }
-
   return (
     <div className="bg-white shadow max-w-xl flex flex-col justify-center border mx-auto py-5 rounded-3xl">
       <div className="flex justify-end px-4">
@@ -105,20 +119,35 @@ const LoginPage = ({ onClose, setIsLoginPage }) => {
               onChange={handleChange}
             />
             <div>
-              <h1> error populated here</h1>
               {error ? (
-                <p className="error h-4">{error}</p>
+                <p className="h-3 text-sm text-red-600">{error}</p>
               ) : (
-                authError && <p className="error">{authError}</p>
+                authError && (
+                  <p className="h-3 text-sm text-red-600">
+                    {authError.toLowerCase()}
+                  </p>
+                )
               )}
             </div>
 
             <div className="flex flex-col gap-3 my-7">
               <p>
                 Forgot your{" "}
-                <span className="text-[#4444d9] cursor-pointer">username</span>{" "}
+                <button
+                  type="submit"
+                  onClick={handleChangePassword}
+                  className="text-[#4444d9] cursor-pointer"
+                >
+                  username
+                </button>{" "}
                 or{" "}
-                <span className="text-[#4444d9] cursor-pointer">password?</span>
+                <button
+                  type="submit"
+                  onClick={handleChangePassword}
+                  className="text-[#4444d9] cursor-pointer"
+                >
+                  password?
+                </button>
               </p>
               <p>
                 New to Reddit?
@@ -132,9 +161,12 @@ const LoginPage = ({ onClose, setIsLoginPage }) => {
               </p>
             </div>
 
-            <div className="bg-red-500 text-white h-14 rounded-full cursor-pointer flex items-center justify-center">
+            <button
+              type="submit"
+              className="bg-red-500 text-white h-14 rounded-full cursor-pointer flex items-center justify-center"
+            >
               Log In
-            </div>
+            </button>
           </form>
         </div>
       </div>

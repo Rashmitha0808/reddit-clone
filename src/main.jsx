@@ -11,9 +11,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Provider store={store}>
         <App />
-        {/* <div className="flex justify-start  bg-[#dfecf2]">
-          <Post />
-        </div> */}
       </Provider>
     </BrowserRouter>
   </React.StrictMode>
