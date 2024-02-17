@@ -1,7 +1,7 @@
 import axios from "axios";
 const api = axios.create({
   baseURL: "https://academics.newtonschool.co/api/v1",
-  headers: { projectId: "qlapp18uwhqp" },
+  headers: { projectId: "nrl9cxu5sfn2" },
 });
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("reddit_token");

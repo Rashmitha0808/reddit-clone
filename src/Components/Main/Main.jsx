@@ -14,9 +14,10 @@ import Icons from "../../Pages/Post/Icons";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Footer from "../Foot/Footer";
+import Loading from "../ComingSoon/Loading";
 const Main = () => {
   const { authenticated } = useSelector((state) => state.user);
-  const { get, data } = useAPI();
+  const { get, data, isLoading } = useAPI();
   const filterIcons = [
     { icon: <BsFillRocketFill />, title: "Best" },
     { icon: <BsFire />, title: "Hot" },
@@ -66,6 +67,7 @@ const Main = () => {
         </>
       )}
       <div className="max-w-full ">
+        {isLoading && <Loading />}
         {data?.map((post) => (
           <Card key={post?._id} {...post} />
         ))}

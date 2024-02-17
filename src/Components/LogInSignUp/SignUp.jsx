@@ -35,12 +35,12 @@ const SignUp = ({ onClose, setIsLoginPage }) => {
     } else {
       setError("");
       dispatch(signUpUser(formData));
-      onClose();
     }
   };
 
   if (authenticated) {
     navigate("/");
+    onClose();
   }
   const handleChange = (e) => {
     const { name, value } = e.target;

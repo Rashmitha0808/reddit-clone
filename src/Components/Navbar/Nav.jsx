@@ -82,7 +82,12 @@ const Nav = () => {
             <div className="search-icon  pr-2 text-[#0f1a1c]">
               <CiSearch className="w-5 h-5 text-black" />
             </div>
-            <form className="text-neutral-content-strong w-full">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+              className="text-neutral-content-strong w-full"
+            >
               <input
                 type="search"
                 onChange={handleSearch}

@@ -31,19 +31,19 @@ const LoginPage = ({ onClose, userEmail, setIsLoginPage }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-  const handleChangePassword = async (e) => {
-    try {
-      await patch("/user/updateMyPassword", {
-        email: formData.email,
-        passwordCurrent: formData.password,
-        password: "",
-        appType: "reddit",
-      });
-      console.log("password changed succesfully");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleChangePassword = async (e) => {
+  //   try {
+  //     await patch("/user/updateMyPassword", {
+  //       email: formData.email,
+  //       passwordCurrent: formData.password,
+  //       password: "",
+  //       appType: "reddit",
+  //     });
+  //     console.log("password changed succesfully");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     console.log("login submit");
@@ -133,19 +133,11 @@ const LoginPage = ({ onClose, userEmail, setIsLoginPage }) => {
             <div className="flex flex-col gap-3 my-7">
               <p>
                 Forgot your{" "}
-                <button
-                  type="submit"
-                  onClick={handleChangePassword}
-                  className="text-[#4444d9] cursor-pointer"
-                >
+                <button type="submit" className="text-[#4444d9] cursor-pointer">
                   username
                 </button>{" "}
                 or{" "}
-                <button
-                  type="submit"
-                  onClick={handleChangePassword}
-                  className="text-[#4444d9] cursor-pointer"
-                >
+                <button type="submit" className="text-[#4444d9] cursor-pointer">
                   password?
                 </button>
               </p>

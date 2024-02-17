@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import Nav from "../Navbar/Nav";
 import Sidebar from "../Sidebar/Sidebar";
 import PopularCommunities from "../Communities/PopularCommunities";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { isUserLoggedIn } from "../../store/UserSlice";
 
 const Layout = ({ children }) => {
   const { authenticated } = useSelector((state) => state.user);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(isUserLoggedIn());
+  }, []);
   return (
     <>
       <Nav />
