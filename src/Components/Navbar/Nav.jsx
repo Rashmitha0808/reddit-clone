@@ -116,15 +116,15 @@ const Nav = () => {
               </div>
             </div>
           ) : (
-            <div className="header-end-after-login flex items-center gap-3">
+            <div className="header-end-after-login flex items-center gap-3 max-w-full">
               <BsArrowUpRightCircle className="cursor-pointer h-6 w-6" />
               <PiChatCircleDots className="cursor-pointer h-7 w-7" />
               <PiBellThin className="cursor-pointer h-7 w-7" />
               <PiPlus className="cursor-pointer h-7 w-7" />
               <span>Advertise</span>
 
-              <div className="flex flex-col h-full">
-                <div className="flex items-center mx-2 border p-1">
+              <div className="flex flex-col max-h-full max-w-full">
+                <div className="flex justify-between items-center mx-2 border p-1">
                   <img src="/Assets/profile-img.jpg" className="w-10" />
                   <div className="user-details flex items-center flex-col px-3">
                     <span className="text-sm ">Glitter head</span>
@@ -141,7 +141,7 @@ const Nav = () => {
                     <MdKeyboardArrowDown onClick={handleDropdown} />
                   )}
                 </div>
-                <div className="flex">{openDropdown && <DropDown />}</div>
+                <div>{openDropdown && <DropDown />}</div>
               </div>
             </div>
           )}

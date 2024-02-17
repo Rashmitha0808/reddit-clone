@@ -56,15 +56,15 @@ const Post = () => {
       <div className="flex flex-col w-[740px] ">
         <div className="flex flex-row  items-center my-2 justify-between border-b-2 ">
           <h1 className="text-lg font-medium"> Create a post</h1>
-          <button className="text-[#6171bf] font-bold">
+          <div className="text-[#6171bf] font-bold cursor-pointer">
             DRAFT
             <span className="mx-2 px-1 items-center border-none rounded-s-sm font-medium border bg-gray-500 text-white">
               0
             </span>
-          </button>
+          </div>
         </div>
 
-        <div className="rounded-md community flex flex-col w-[298px] my-2 bg-white py-2 font-medium">
+        <div className="relative rounded-t-md community flex flex-col w-[298px] my-2 bg-white py-2 font-medium">
           <div className="flex flex-row content-center justify-between items-center">
             <div className="flex flex-row content-center items-center">
               <TbCircleDashed className="w-8 h-8 mx-2" />
@@ -84,7 +84,7 @@ const Post = () => {
             )}
           </div>
           {openDropdown && (
-            <div className="text-sm mx-3 py-2 cursor-not-allowed">
+            <div className="text-sm rounded-b-md px-3 py-2 cursor-not-allowed absolute top-full left-0 w-full bg-white border">
               Hey your own name here!!
             </div>
           )}
