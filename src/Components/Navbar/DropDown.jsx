@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { logOutUser } from "../../store/UserSlice";
 import { CgProfile } from "react-icons/cg";
 import { TfiEye } from "react-icons/tfi";
+import { RxExit } from "react-icons/rx";
 
 import ContentDropdown from "./ContentDropdown";
 
@@ -18,7 +19,6 @@ function DropDown() {
   };
 
   const contents = [
-    { content: "Online Status" },
     { content: "Profile" },
     { content: "Create Avatar" },
     { content: "User Settings" },
@@ -41,10 +41,13 @@ function DropDown() {
       <div className="flex flex-row items-center gap-3 max-w-full py-3 px-5 text-gray-500">
         <TfiEye />
         <span className="font-medium">View Options</span>
-        <ContentDropdown />
       </div>
-
-      <button onClick={handleLogout}> logout</button>
+      <ContentDropdown content={"Dark Mode"} />
+      <hr />
+      <div className="py-4 flex flex-row items-center justify-center gap-3 px-4 cursor-pointer">
+        <RxExit className="w-5 h-5" />
+        <button onClick={handleLogout}> log out</button>
+      </div>
     </div>
   );
 }

@@ -120,7 +120,9 @@ const Nav = () => {
               <BsArrowUpRightCircle className="cursor-pointer h-6 w-6" />
               <PiChatCircleDots className="cursor-pointer h-7 w-7" />
               <PiBellThin className="cursor-pointer h-7 w-7" />
-              <PiPlus className="cursor-pointer h-7 w-7" />
+              <Link to="/post">
+                <PiPlus className="cursor-pointer h-7 w-7" />
+              </Link>
               <span>Advertise</span>
 
               <div className="flex flex-col max-h-full max-w-full">

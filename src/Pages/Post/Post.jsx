@@ -52,7 +52,7 @@ const Post = () => {
   };
 
   return (
-    <form className=" mt-5" onSubmit={handleSubmit}>
+    <form className=" mt-5 " onSubmit={handleSubmit}>
       <div className="flex flex-col w-[740px] ">
         <div className="flex flex-row  items-center my-2 justify-between border-b-2 ">
           <h1 className="text-lg font-medium"> Create a post</h1>

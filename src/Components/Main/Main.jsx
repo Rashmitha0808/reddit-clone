@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Footer from "../Foot/Footer";
 import Loading from "../ComingSoon/Loading";
+import FrontpageSidebar from "../Sidebar/FrontpageSidebar";
 const Main = () => {
   const { authenticated } = useSelector((state) => state.user);
   const { get, data, isLoading } = useAPI();
@@ -29,12 +30,12 @@ const Main = () => {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-col max-w-2xl">
       {authenticated && (
-        <>
+        <div className="flex flex-col">
           <Link to="/post">
-            <div className="w-full my-6 ">
-              <div className="flex flex-row border p-1 items-center bg-white rounded-md">
+            <div className="max-w-full my-6  ">
+              <div className="flex flex-row border p-1 border-[#ccc] items-center bg-white rounded-md">
                 <div className="m-1 p-1">
                   <PiRedditLogoThin className="w-9 h-9 cursor-pointer" />
                 </div>
@@ -52,8 +53,8 @@ const Main = () => {
               </div>
             </div>
           </Link>
-          <div className="mt-6 mb-9">
-            <div className="flex flex-row gap-6 items-center rounded-md p-1 w-full bg-white  border">
+          <div className="mt-2 mb-4 ">
+            <div className="flex flex-row gap-6 border-[#ccc] items-center rounded-md p-1 w-full bg-white  border">
               {filterIcons.map((icons, index) => (
                 <Icons
                   key={index}
@@ -64,15 +65,17 @@ const Main = () => {
               ))}
             </div>
           </div>
-        </>
+        </div>
       )}
-      <div className="max-w-full ">
-        {isLoading && <Loading />}
-        {data?.map((post) => (
-          <Card key={post?._id} {...post} />
-        ))}
+      <div className="flex flex-row max-w-full">
+        <div className="flex-1">
+          {isLoading && <Loading />}
+          {data?.map((post) => (
+            <Card key={post?._id} {...post} />
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

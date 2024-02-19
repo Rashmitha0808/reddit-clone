@@ -10,10 +10,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { isUserLoggedIn } from "../store/UserSlice";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Foot/Footer";
+import FrontpageSidebar from "../Components/Sidebar/FrontpageSidebar";
 const Home = () => {
+  const { authenticated } = useSelector((state) => state.user);
+
   return (
-    <div>
-      <Main />{" "}
+    <div className="home flex flex-row max-w-full gap-6">
+      <Main />
+      {authenticated && <FrontpageSidebar />}
     </div>
   );
 };
