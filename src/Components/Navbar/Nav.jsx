@@ -56,12 +56,13 @@ const Nav = () => {
   }, [searchValue]);
 
   return (
-    <nav className="flex items-center h-16 fixed top-0 left-0 right-0 bg-white">
-      <div className="lg:hidden flex items-center ">
+    <nav className="flex items-center h-16 fixed top-0 left-0 right-0 bg-white max-w-full">
+      {/* <div className="lg:hidden flex items-center ">
         <HiOutlineMenu className="w-7 h-7 ml-4 cursor-pointer" />
-      </div>
+      </div> */}
+
       <div className="px-7 w-full h-16 border-b border-solid flex items-center ">
-        <nav className="flex justify-between w-full  h-[40px] items-center">
+        <div className="flex justify-between w-full  h-[40px] items-center">
           <div className="header-start flex items-center cursor-pointer">
             <Link to="/">
               <img
@@ -152,7 +153,7 @@ const Nav = () => {
               <Authentication onClose={onModalClose} />
             </Portal>
           )}
-        </nav>
+        </div>
       </div>
     </nav>
   );

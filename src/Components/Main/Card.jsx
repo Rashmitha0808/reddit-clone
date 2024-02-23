@@ -1,19 +1,53 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
-import { PiArrowFatUpLight, PiArrowFatDown } from "react-icons/pi";
+import { PiArrowFatUpFill, PiArrowFatDownFill, PiLink } from "react-icons/pi";
 import { GoComment } from "react-icons/go";
 import { FiShare } from "react-icons/fi";
 import useAPI from "../../Hooks/useAPI";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Icons from "../../Pages/Post/Icons";
+import ContentDropdown from "../Navbar/ContentDropdown";
 
 const Card = ({ _id, author, channel, content, commentCount, likeCount }) => {
   const navigate = useNavigate();
   const authenticated = useSelector((state) => state.user);
+  const { post, data } = useAPI();
+  const { Delete, data: deletedData } = useAPI();
+  const [UpVote, setUpVote] = useState(likeCount);
 
-  const handleVote = () => {
+  const [upVotecolor, setUpVoteColor] = useState("gray");
+  const [downVotecolor, setDownVoteColor] = useState("gray");
+
+  useEffect(() => {
+    // get(`/reddit/like/${_id}`);
+    if (data.status === "success") {
+      setUpVote((prev) => prev + 1);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    // get(`/reddit/like/${_id}`);
+    if (deletedData.status === "success") {
+      setUpVote((prev) => prev - 1);
+    }
+    console.log("deleted things", deletedData, UpVote);
+  }, [deletedData]);
+
+  const handleUpVote = () => {
     if (!authenticated) return navigate("/login");
+    post(`/reddit/like/${_id}`);
+    setUpVoteColor("red");
+    setDownVoteColor("gray");
   };
+
+  const handleDownVote = () => {
+    if (!authenticated) return navigate("/login");
+    Delete(`/reddit/like/${_id}`);
+    setDownVoteColor("blue");
+    setUpVoteColor("gray");
+  };
+
   const handleComment = () => {
     if (!authenticated) return navigate("/login");
   };
@@ -60,13 +94,18 @@ const Card = ({ _id, author, channel, content, commentCount, likeCount }) => {
           </h1>
           <p>{content}</p>
           <div className="footer flex flex-row items-center gap-3 mt-2 ">
-            <div
-              onClick={handleVote}
-              className=" flex flex-row items-center gap-1 px-2 py-[8px] bg-[#e8e9ec] hover:bg-[#dadce3] rounded-3xl cursor-pointer"
-            >
-              <PiArrowFatUpLight className="h-5 w-5" />
-              <span className="px-1 text-sm font-semibold">{likeCount}</span>
-              <PiArrowFatDown className="h-5 w-5" />
+            <div className=" flex flex-row items-center gap-1 px-2 py-[8px] bg-[#e8e9ec] hover:bg-[#dadce3] rounded-3xl cursor-pointer">
+              <PiArrowFatUpFill
+                onClick={handleUpVote}
+                className={`h-5 w-5 text-${upVotecolor}-400 `}
+                // className="text-red-600"
+              />
+              <span className="px-1 text-sm font-semibold">{UpVote}</span>
+              <PiArrowFatDownFill
+                onClick={handleDownVote}
+                className={`h-5 w-5 text-${downVotecolor}-400 `}
+                // className="text-blue-700"
+              />
             </div>
 
             <div
@@ -81,7 +120,7 @@ const Card = ({ _id, author, channel, content, commentCount, likeCount }) => {
               onClick={handleShare}
               className="flex flex-row items-center gap-1  px-3 py-[8px] bg-[#e8e9ec] hover:bg-[#dadce3]  rounded-3xl cursor-pointer"
             >
-              <FiShare className="h-5 w-5" />
+              <FiShare className="h-5 w-5]" />
               <span className="text-sm font-semibold">Share</span>
             </div>
           </div>

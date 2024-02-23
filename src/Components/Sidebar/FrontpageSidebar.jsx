@@ -18,6 +18,7 @@ const FrontpageSidebar = () => {
             Try Now
           </button>
         </div>
+
         <div className="bg-[url('/Assets/bannerPf.png')]">
           <div>
             <img
@@ -34,3 +35,4 @@ const FrontpageSidebar = () => {
 };
 
 export default FrontpageSidebar;
+// 2022 jan sde

@@ -44,7 +44,8 @@ function useAPI(initialData = []) {
   const Delete = async (query) => {
     try {
       const response = await api.delete(query);
-      // setData(response?.data?.data);
+      setData(response?.data);
+      // console.log(response.data);
       setIsError(false);
     } catch (error) {
       setIsError(true);
