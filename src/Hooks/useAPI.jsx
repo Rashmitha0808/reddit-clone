@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../API/Axios";
+import api from "../API/axios";
 
 // Custom hook for making GET requests
 function useAPI(initialData = []) {

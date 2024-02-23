@@ -100,7 +100,7 @@ const Nav = () => {
           <div className=" header-end flex items-center h-[45px] ">
             <div className="flex items-center content-end px-3 rounded-full h-full mr-2   bg-[#eeeeee] border-[#edeff1] hover:bg-[#e6eaed]">
               <BsQrCodeScan className="mr-2 w-5 h-5" />
-              <button className="font-medium		">Get app</button>
+              <button className="font-medium">Get app</button>
             </div>
             <div className="flex items-center px-3  h-full  mr-2  text-white font-roboto rounded-full bg-[#d93a00]   hover:bg-[#962900]">
               <button className="font-medium" onClick={onModalOpen}>
@@ -113,20 +113,20 @@ const Nav = () => {
           </div>
         ) : (
           <div className="header-end-after-login flex items-center gap-3 max-w-full">
-            <BsArrowUpRightCircle className="cursor-pointer h-6 w-6" />
-            <PiChatCircleDots className="cursor-pointer h-7 w-7" />
-            <PiBellThin className="cursor-pointer h-7 w-7" />
+            <BsArrowUpRightCircle className="cursor-pointer h-6 w-6 hidden lg:inline-block" />
+            <PiChatCircleDots className="cursor-pointer h-7 w-7 hidden lg:inline-block" />
+            <PiBellThin className="cursor-pointer h-7 w-7 hidden lg:inline-block" />
             <Link to="/post">
-              <PiPlus className="cursor-pointer h-7 w-7" />
+              <PiPlus className="cursor-pointer h-7 w-7 hidden lg:inline-block" />
             </Link>
-            <span>Advertise</span>
+            <span className="hidden lg:inline-block">Advertise</span>
 
-            <div className="flex flex-col max-h-full max-w-full">
+            <div className="flex flex-col max-w-full whitespace-nowrap">
               <div className="flex justify-between items-center mx-2 border p-1">
                 <img src="/Assets/profile-img.jpg" className="w-10" />
-                <div className="user-details flex items-center flex-col px-3">
+                <div className="user-details max-w-full flex items-center flex-col px-3 hidden lg:flex ">
                   <span className="text-sm ">Glitter head</span>
-                  <div className="flex items-center text-sm">
+                  <div className="flex items-center gap-1 text-sm">
                     <GiFlowerEmblem className="text-orange-700" />
                     <span className="text-sm font-bold text-gray-400">
                       1 Karma
