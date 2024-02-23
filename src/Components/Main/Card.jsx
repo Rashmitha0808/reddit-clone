@@ -31,7 +31,7 @@ const Card = ({ _id, author, channel, content, commentCount, likeCount }) => {
     if (deletedData.status === "success") {
       setUpVote((prev) => prev - 1);
     }
-    console.log("deleted things", deletedData, UpVote);
+    // console.log("deleted things", deletedData, UpVote);
   }, [deletedData]);
 
   const handleUpVote = () => {
