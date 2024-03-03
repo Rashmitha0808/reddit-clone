@@ -7,7 +7,7 @@ import LoginPage from "./Components/LogInSignUp/LoginPage";
 import SignUp from "./Components/LogInSignUp/SignUp";
 import Post from "./Pages/Post/Post";
 import Authentication from "./Components/LogInSignUp/Authentication";
-import Premium from "./Pages/Premium";
+import Premium from "./Pages/Premium/Premium";
 
 function App() {
   return (
