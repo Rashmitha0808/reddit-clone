@@ -77,7 +77,7 @@ const Nav = () => {
           <MdKeyboardArrowDown /> */}
         </div>
 
-        <div className=" search-bar flex items-center content-center rounded-full bg-[#eeeeee] px-4 h-[45px] w-[41.5rem]  border-[#edeff1] hover:bg-[#e6eaed]">
+        <div className=" search-bar flex items-center content-center rounded-full bg-[#eeeeee] px-3 h-[45px]   border-[#edeff1] hover:bg-[#e6eaed]">
           <div className="search-icon  pr-2 text-[#0f1a1c]">
             <CiSearch className="w-5 h-5 text-black" />
           </div>
@@ -91,7 +91,7 @@ const Nav = () => {
               type="search"
               onChange={handleSearch}
               placeholder="Search Reddit"
-              className="bg-inherit border-none focus:outline-none max-w-full"
+              className="bg-inherit border-none focus:outline-none max-w-full w-[41.5rem]"
             />
           </form>
         </div>

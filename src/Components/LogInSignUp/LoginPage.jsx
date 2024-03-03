@@ -31,19 +31,6 @@ const LoginPage = ({ onClose, userEmail, setIsLoginPage }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-  // const handleChangePassword = async (e) => {
-  //   try {
-  //     await patch("/user/updateMyPassword", {
-  //       email: formData.email,
-  //       passwordCurrent: formData.password,
-  //       password: "",
-  //       appType: "reddit",
-  //     });
-  //     console.log("password changed succesfully");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const handleSubmit = async (e) => {
     console.log("login submit");

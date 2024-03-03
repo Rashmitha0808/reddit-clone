@@ -38,11 +38,11 @@ function DropDown() {
         />
       ))}
       <hr />
-      <div className="flex flex-row items-center gap-3 max-w-full py-3 px-5 text-gray-500">
+      {/* <div className="flex flex-row items-center gap-3 max-w-full py-3 px-5 text-gray-500">
         <TfiEye />
         <span className="font-medium">View Options</span>
       </div>
-      <ContentDropdown content={"Dark Mode"} />
+      <ContentDropdown content={"Dark Mode"} /> */}
       <hr />
       <div className="py-4 flex flex-row items-center justify-center gap-3 px-4 cursor-pointer">
         <RxExit className="w-5 h-5" />

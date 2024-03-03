@@ -6,6 +6,8 @@ import Search from "./Pages/Search";
 import LoginPage from "./Components/LogInSignUp/LoginPage";
 import SignUp from "./Components/LogInSignUp/SignUp";
 import Post from "./Pages/Post/Post";
+import Authentication from "./Components/LogInSignUp/Authentication";
+import Premium from "./Pages/Premium";
 
 function App() {
   return (
@@ -13,10 +15,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="search/:query" element={<Search />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/auth" element={<Authentication />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/post" element={<Post />} />
-        <Route path="/post/:id" element={<Post />} />
+        <Route path="/premium" element={<Premium />} />
       </Routes>
     </Layout>
   );

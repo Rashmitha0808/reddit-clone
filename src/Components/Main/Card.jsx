@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Icons from "../../Pages/Post/Icons";
 import ContentDropdown from "../Navbar/ContentDropdown";
+import Authentication from "../LogInSignUp/Authentication";
 
 const Card = ({ _id, author, channel, content, commentCount, likeCount }) => {
   const navigate = useNavigate();
@@ -35,28 +36,26 @@ const Card = ({ _id, author, channel, content, commentCount, likeCount }) => {
   }, [deletedData]);
 
   const handleUpVote = () => {
-    if (!authenticated) return navigate("/login");
     post(`/reddit/like/${_id}`);
     setUpVoteColor("red");
     setDownVoteColor("gray");
   };
 
   const handleDownVote = () => {
-    if (!authenticated) return navigate("/login");
     Delete(`/reddit/like/${_id}`);
     setDownVoteColor("blue");
     setUpVoteColor("gray");
   };
 
   const handleComment = () => {
-    if (!authenticated) return navigate("/login");
+    if (authenticated) return navigate("/auth");
   };
   const handleShare = () => {
-    if (!authenticated) return navigate("/login");
+    if (authenticated) return navigate("/auth");
   };
 
   return (
-    <div key={_id} className=" main">
+    <div key={_id} className="main">
       <div
         className={`card flex flex-col ${
           authenticated
@@ -73,7 +72,8 @@ const Card = ({ _id, author, channel, content, commentCount, likeCount }) => {
               />
             </div>
             <div className="font-medium cursor-pointer">
-              r/{channel?.name.charAt(0).toLowerCase() + channel?.name.slice(1)}
+              r/
+              {channel?.name.charAt(0).toLowerCase() + channel?.name.slice(1)}
             </div>
             <div className="text-slate-600">. 1 min. ago</div>
           </div>
@@ -126,6 +126,7 @@ const Card = ({ _id, author, channel, content, commentCount, likeCount }) => {
           </div>
         </div>
       </div>
+
       {/* <hr className={"border"} /> */}
       {!authenticated && <hr className={" border"} />}
     </div>

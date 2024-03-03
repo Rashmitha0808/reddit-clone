@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const FrontpageSidebar = () => {
   return (
@@ -14,9 +15,11 @@ const FrontpageSidebar = () => {
             <span>Reddit Premium</span>
           </div>
           <span className="text-xs font-light">The best Reddit experience</span>
-          <button className="bg-[#ff4500] rounded-3xl text-white font-bold text-base py-1">
-            Try Now
-          </button>
+          <Link to="/premium">
+            <button className="bg-[#ff4500] rounded-3xl text-white font-bold text-base py-1 px-2">
+              Try Now
+            </button>
+          </Link>
         </div>
 
         <div className="bg-[url('/Assets/bannerPf.png')]">
