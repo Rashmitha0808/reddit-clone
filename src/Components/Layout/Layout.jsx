@@ -20,8 +20,8 @@ const Layout = ({ children }) => {
         }`}
       >
         {!authenticated && <Sidebar />}
-        <div className="overflow-y-auto m-auto h-full w-full">
-          {/* <div className="overflow-y-auto m-auto h-full max-w-full "> */}
+        {/* <div className="overflow-y-auto m-auto h-full"> */}
+        <div className="overflow-y-auto m-auto h-full max-w-full ">
           {children}
         </div>
         {!authenticated && <PopularCommunities />}
