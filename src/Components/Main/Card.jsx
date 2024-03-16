@@ -47,13 +47,6 @@ const Card = ({ _id, author, channel, content, commentCount, likeCount }) => {
     setUpVoteColor("gray");
   };
 
-  const handleComment = () => {
-    if (authenticated) return navigate("/auth");
-  };
-  const handleShare = () => {
-    if (authenticated) return navigate("/auth");
-  };
-
   return (
     <div key={_id} className="main">
       <div
@@ -108,18 +101,12 @@ const Card = ({ _id, author, channel, content, commentCount, likeCount }) => {
               />
             </div>
 
-            <div
-              onClick={handleComment}
-              className="flex flex-row items-center gap-1  px-3 py-[8px] bg-[#e8e9ec] hover:bg-[#dadce3]  rounded-3xl cursor-pointer"
-            >
+            <div className="flex flex-row items-center gap-1  px-3 py-[8px] bg-[#e8e9ec] hover:bg-[#dadce3]  rounded-3xl cursor-pointer">
               <GoComment className="h-5 w-5" />
               <span className="text-sm font-semibold">{commentCount}.1K</span>
             </div>
 
-            <div
-              onClick={handleShare}
-              className="flex flex-row items-center gap-1  px-3 py-[8px] bg-[#e8e9ec] hover:bg-[#dadce3]  rounded-3xl cursor-pointer"
-            >
+            <div className="flex flex-row items-center gap-1  px-3 py-[8px] bg-[#e8e9ec] hover:bg-[#dadce3]  rounded-3xl cursor-pointer">
               <FiShare className="h-5 w-5]" />
               <span className="text-sm font-semibold">Share</span>
             </div>

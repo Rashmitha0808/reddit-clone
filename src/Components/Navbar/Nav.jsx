@@ -77,7 +77,7 @@ const Nav = () => {
           <MdKeyboardArrowDown /> */}
         </div>
 
-        <div className=" search-bar flex items-center content-center rounded-full bg-[#eeeeee] px-3 h-[45px]   border-[#edeff1] hover:bg-[#e6eaed]">
+        <div className=" search-bar flex items-center content-center rounded-full bg-[#eeeeee] px-3 h-[42px]   border-[#edeff1] hover:bg-[#e6eaed]">
           <div className="search-icon  pr-2 text-[#0f1a1c]">
             <CiSearch className="w-5 h-5 text-black" />
           </div>
@@ -119,7 +119,9 @@ const Nav = () => {
             <Link to="/post">
               <PiPlus className="cursor-pointer h-7 w-7 hidden lg:inline-block" />
             </Link>
-            <span className="hidden lg:inline-block">Advertise</span>
+            <span className="hidden lg:inline-block cursor-pointer">
+              Advertise
+            </span>
 
             <div className="flex flex-col max-w-full whitespace-nowrap">
               <div className="flex justify-between items-center mx-2 border p-1">

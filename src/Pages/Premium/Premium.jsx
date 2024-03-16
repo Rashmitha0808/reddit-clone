@@ -1,7 +1,6 @@
 import React from "react";
 import PremiumCard from "./PremiumCard";
 import PremiumButton from "./PremiumButton";
-import { Link } from "react-router-dom";
 import PremiumFooter from "./PremiumFooter";
 
 const Premium = () => {

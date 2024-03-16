@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ComingSoon from "../../Components/ComingSoon/useComingSoon";
 import ComingSoonHook from "../../Components/ComingSoon/ComingSoonHook";
 

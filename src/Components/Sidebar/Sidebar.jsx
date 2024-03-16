@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import Footer from "../Foot/Footer";
 import Accordion from "./Accordion";
-import ComingSoon from "../ComingSoon/useComingSoon";
 import SidebarIcons from "./SidebarIcons";
 import "../Sidebar/Sidebar.css";
 import { AiFillHome } from "react-icons/ai";
